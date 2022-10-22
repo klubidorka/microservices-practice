@@ -3,7 +3,6 @@ package ru.mipt1c;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
-import ru.mipt1c.KeyValueStorage;
 
 import java.io.File;
 import java.util.Arrays;
@@ -213,12 +212,10 @@ public abstract class AbstractSingleFileStorageTest extends KeyValueStorageFacto
             String path, StorageTestUtils.Callback<KeyValueStorage<K, V>> callback,
             Function<String, KeyValueStorage<K, V>> builder) throws Exception {
         KeyValueStorage<K, V> storage = builder.apply(path);
-        try {
+        try (storage) {
             if (callback != null) {
                 callback.callback(storage);
             }
-        } finally {
-            storage.close();
         }
         return storage;
     }
