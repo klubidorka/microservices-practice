@@ -1,8 +1,5 @@
 package ru.mipt1c;
 
-import ru.mipt1c.KeyValueStorage;
-import ru.mipt1c.MalformedDataException;
-
 public abstract class KeyValueStorageFactories {
     protected abstract KeyValueStorage<String, String> buildStringsStorage(String path) throws MalformedDataException;
 
